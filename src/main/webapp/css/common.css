@@ -1,0 +1,27 @@
+*{ margin:0px; padding:0px; box-sizing:border-box; }
+*:focus{ outline:none;}
+.tsm{ background:#333; font-size:13px; color:#fff; margin:20px; margin-top:0px; padding:12px; line-height:25px;}
+.tsm .p2{ margin-top:12px;}
+.btns{ padding:20px;}
+.btns div{ display:block; text-align:center; cursor:pointer; padding:10px; border-radius:5px; background:#0CC; color:#fff; margin-bottom:12px; width:100%;}
+
+.dateinputer{
+          line-height:40px;
+          height:40px;
+          margin:10px 0;
+          border:1px solid #ccc;
+          cursor: pointer;
+          position:relative;
+          /*top:10px;*/
+          /*left:20px;*/
+          padding:0 6px;
+          font-size:12px !important;
+      }
+      .flex-div{
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-flow: column;
+          margin-left:30px;
+          margin-top:20px;
+      }

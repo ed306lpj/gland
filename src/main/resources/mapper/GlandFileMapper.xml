@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.app.gland.mapper.GlandFileMapper">
+    <select id="queryListByCheckDate" resultType="com.app.gland.entity.GlandFileEntity">
+        SELECT * FROM gland_file
+        <where>
+            1=1 
+            <if test="startDate !=null and startDate !=''">
+                AND check_date BETWEEN #{startDate} and #{endDate}
+            </if>
+            <if test="fileType !=null and fileType !=''">
+                AND file_type =#{fileType}
+            </if>
+            ORDER BY check_date ASC
+        </where>
+    </select>
+</mapper>
