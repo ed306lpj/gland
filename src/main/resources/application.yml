@@ -15,6 +15,12 @@ spring:
 
   thymeleaf:
     cache: false
+  mail:
+    host: smtp.qq.com
+    username: 568331921@qq.com
+    password: qsijqjvhmopmbdbi
+    default-encoding: UTF-8
+
 
 mybatis-plus:
   configuration:

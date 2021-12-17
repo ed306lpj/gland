@@ -6,7 +6,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 
+import com.app.gland.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,8 +35,11 @@ public class CommonRest {
  
 	@Autowired
 	private GlandCheckService glandCheckService;
-	
-	
+    @Autowired
+    private MailService mailService;
+    @Value("${spring.mail.username}")
+    private String to;
+
 	
     @GetMapping("/index")
     public GlobalResponse getData(@RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate) {
@@ -73,6 +78,14 @@ public class CommonRest {
     public GlobalResponse delete(@RequestParam(name = "id") Long id) {
     	boolean flag = glandCheckService.deleteById(id);
         return GlobalResponse.success(flag);
+    }
+
+
+    @GetMapping("/send/email")
+    public GlobalResponse sendEmail(@RequestParam(name = "fullName") String fullName,@RequestParam(name = "email") String email,@RequestParam(name = "subject") String subject,@RequestParam(name = "comment") String comment) {
+        String contentMsg = "来自于："+fullName+"(\""+email+"\"),备注信息："+comment;
+        mailService.sendSimpleMail(to, subject, contentMsg);
+        return GlobalResponse.success(true);
     }
     
 }

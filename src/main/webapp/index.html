@@ -1,104 +1,21 @@
-<!DOCTYPE HTML>
-<html>
-    <head>
-    <meta charset="utf-8"><link rel="icon" href="https://jscdn.com.cn/highcharts/images/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>    
-    <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
-    <script src="js/commonJs.js"></script>
-    <link type="text/css" rel="stylesheet" href="css/green.css" />
-    <link rel="stylesheet" href="css/common.css" />
-    <link rel="stylesheet" href="css/syalert.min.css" />
-	<script src="js/syalert.min.js"></script>
-    
-    <script type="text/javascript" src="js/moment.js"></script>
-	<script type="text/javascript" src="js/xndatepicker.js"></script>
-    
-    
-   
-    
-    
-    </head>
-    <body>
-    	<div onClick="syalert.syopen('alert4')">模态弹窗</div>
-    	
-    	<div class="flex-div">
-		    <span>检查时间段</span>
-		    <div id='daterange' class="dateinputer"></div>
-    	</div>
-    	
-<!--         <div id="container1" style="width:100%;height:400px"></div> -->
-<!--         <div id="container2" style="width:100%;height:400px;"></div> -->
-     	
-        <!-- 弹出框内容 -->
-        <div class="sy-alert sy-alert-model animated" sy-enter="zoomIn" sy-leave="zoomOut" sy-type="confirm" sy-mask="true" id="alert4">
-		<div class="sy-title">记录检查结果</div>
-		<div class="sy-content">
-			<div class="form">
-				<p class="input-item">
-					<input type="text" id="checkDate" placeholder="检查日期" />
-				</p>
-				<p class="input-item">
-					<input type="text" id="dosage" placeholder="请输入药量" />
-				</p>
-				<p class="input-item">
-					<input type="text" id="checkOpt1" placeholder="请输入验证码" />
-				</p>
-				<p class="input-item">
-					<input type="text" id="checkOpt2" placeholder="请输入验证码" />
-				</p>
-				<p class="input-item">
-					<input type="text" id="checkOpt3" placeholder="请输入验证码" />
-				</p>
-				<p class="input-item">
-					<input type="text" id="checkOpt4" placeholder="请输入验证码" />
-				</p>
-				<p class="input-item">
-					<input type="text" id="checkOpt5" placeholder="请输入验证码" />
-				</p>
-				<p class="input-item">
-					<input type="text" id="checkOpt6" placeholder="请输入验证码" />
-				</p>
-				<p class="input-item">
-					<input type="text" id="checkOpt7" placeholder="请输入验证码" />
-				</p>
-			</div>
-		</div>
-		<div class="sy-btn">
-			<button onClick="syalert.syhide('alert4')">取消</button>
-			<button onClick="ok('alert4')">保存</button>
-		</div>
-        </div>
-        
-        <div class="sy-alert sy-alert-tips animated" sy-enter="zoomIn" sy-leave="zoomOut" sy-type="tips" sy-mask="false" id="alert3">
-			<div class="sy-content" id="alert3-msg"></div>
-		</div>
-        
-	<script type="text/javascript">
-         var daterange=new XNDatepicker($("#daterange"),{
-	        type:'daterange',//year/month/date/multiple/ week/datetime/datetimerange/ daterange/monthrange/yearrange
-	        multipleDates:[],//当为多选日期类型时的初始值
-	        startTime:'2017-11-01',
-	        // endTime:'2036-04-04',
-	        minDate:'2017-11-01',
-	        maxDate:'',
-	        separator:' 到 ',
-	        showType:'modal',
-	        linkPanels:false,//面板联动
-	        showClear:true,//是否显示清除按钮
-	        autoConfirm:true,
-	        showShortKeys:true,
-	        autoFillDate:true,//自动变更element里面的值
-	    },function(data){
-	    	var startDate = data.startTime._i.substring(0,10);
-	    	var endDate = data.endTime._i.substring(0,10);
-	    	CommonJs.initData(startDate,endDate);
-	    },)
-         
-        function ok(id){
-        	CommonJs.checkDataError(id);
-        }
-    </script>
-        
-    </body>
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Animated-Login-Form</title>
+  <meta name="Description" content="Animated login for with HTML and css">
+<meta name="Keywords" content="Animated login form, animated html, login form"><link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<form class="box" action="index.html" method="post">
+  <h1>Login</h1> 
+  <input type="text" name="" placeholder="Username">
+  <input type="password" name="" placeholder="Password">
+  <a type="submit" onclick="alert('用户名密码错误')">Login</a>
+</form>
+<!-- partial -->
+  
+</body>
 </html>
