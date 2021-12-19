@@ -37,7 +37,7 @@ public class CommonRest {
 	private GlandCheckService glandCheckService;
     @Autowired
     private MailService mailService;
-    @Value("${spring.mail.username}")
+    @Value("${spring.mail.sendTo}")
     private String to;
 
 	

@@ -5,6 +5,11 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/gland?characterEncoding=utf8&useSSL=false
     username: root
     password: root
+
+    #url: jdbc:mysql://127.0.0.1:3306/gland?characterEncoding=utf8&useSSL=false
+    #username: gland
+    #password: ed306Lpj
+
   mvc:
     view:
       prefix: classpath:/webapp/
@@ -20,6 +25,7 @@ spring:
     username: 568331921@qq.com
     password: qsijqjvhmopmbdbi
     default-encoding: UTF-8
+    sendTo: lisiqi@spic.com.cn
 
 
 mybatis-plus:
