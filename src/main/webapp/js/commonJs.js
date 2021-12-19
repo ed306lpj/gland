@@ -5,7 +5,9 @@ var CommonJs = function () {
 	let minNum = [0,2.76,10.42,0.35,1.6,0,0,0];
 	let maxNum = [20,6.3,24.32,5.5,100,55,100,100];
 
-	let colorClassArr=['bg-info','bg-success','bg-danger','bg-primary','bg-warning','bg-light','bg-dark','bg-info']
+	let colorClassArr=['bg-info','bg-success','bg-danger','bg-primary','bg-warning','bg-light','bg-dark','bg-info'];
+
+	let hospitalArr=['未知','301医院','其他'];
 
 	let colorArr=['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9','#f15c80', '#e4d354', '#8085e8', '#8d4653', '#91e8e1']
 
@@ -28,6 +30,7 @@ var CommonJs = function () {
 					let checkOpt5 = checkData['checkOpt5'];
 					let checkOpt6 = checkData['checkOpt6'];
 					let checkOpt7 = checkData['checkOpt7'];
+					let checkOpt8 = checkData['checkOpt8'];
 					CommonJs.allData(checkDate,checkOpt1,checkOpt2,checkOpt3,checkOpt4,checkOpt5,checkOpt6,checkOpt7,dosages);
 
 					CommonJs.allDataMore(checkDate,dosages,0);
@@ -45,8 +48,8 @@ var CommonJs = function () {
 					CommonJs.initAvgInfo(checkOpt5,5);
 					CommonJs.initAvgInfo(checkOpt6,6);
 					CommonJs.initAvgInfo(checkOpt7,7);
-
-					
+					debugger;
+					CommonJs.checkList(checkOpt8,checkDate);
 					
                 }
             });
@@ -69,6 +72,16 @@ var CommonJs = function () {
 			let xx = (agv*100)/maxNum[idx];
 			let percentNum = xx.toFixed(2);
 			jQuery("#avgNumTab").append('<div class="col-md-6 col-xl-3"><div class="card stat-widget"><div class="card-body"><h5 class="card-title">'+cloumStr[idx]+'平均值'+minNum[idx]+'~'+maxNum[idx]+'</h5><h2>'+agv+'</h2><p>占比进度条</p><div class="progress"><div class="progress-bar '+colorClassArr[idx]+' progress-bar-striped" role="progressbar" style="width: '+percentNum+'%" aria-valuenow="'+percentNum+'" aria-valuemin="'+minNum[idx]+'" aria-valuemax="'+maxNum[idx]+'"></div></div></div></div></div>');
+		},
+
+		checkList :function(arr,checkDate){
+
+			let htmlStr="";
+			for (let i = 0; i < arr.length; i++){
+
+				htmlStr+=' <tr><th scope="row"><img src="assets/images/avatars/profile-image.png" alt="">马燕霞</th><td>'+checkDate[i]+'</td><td>'+hospitalArr[arr[i]]+'</td><td>空</td><td><span class="badge bg-info">空</span></td></tr>';
+			}
+			jQuery("#userTable").html(htmlStr);
 		},
 		
 		

@@ -62,5 +62,8 @@ public class GlandCheckEntity implements Serializable {
     @ApiModelProperty(value = "checkOpt7")
     private double checkOpt7;
 
+    @ApiModelProperty(value = "checkOpt7")
+    private double checkOpt8;
+
     private static final long serialVersionUID = 1L;
 }

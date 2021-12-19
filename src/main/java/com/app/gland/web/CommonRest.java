@@ -54,6 +54,7 @@ public class CommonRest {
         List<Double> checkOpt5 = list.stream().map(GlandCheckEntity::getCheckOpt5).collect(Collectors.toList());
         List<Double> checkOpt6 = list.stream().map(GlandCheckEntity::getCheckOpt6).collect(Collectors.toList());
         List<Double> checkOpt7 = list.stream().map(GlandCheckEntity::getCheckOpt7).collect(Collectors.toList());
+        List<Double> checkOpt8 = list.stream().map(GlandCheckEntity::getCheckOpt8).collect(Collectors.toList());
         map.put("checkDates", checkDates);
         map.put("dosages", dosages);
         map.put("checkOpt1", checkOpt1);
@@ -63,7 +64,7 @@ public class CommonRest {
         map.put("checkOpt5", checkOpt5);
         map.put("checkOpt6", checkOpt6);
         map.put("checkOpt7", checkOpt7);
-        map.put("checkOpt8", checkOpt7);
+        map.put("checkOpt8", checkOpt8);
         return GlobalResponse.success(map);
     }
 
