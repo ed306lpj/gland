@@ -18,7 +18,7 @@ var CommonJs = function () {
 		initData :function(startDate,endDate){
 			jQuery.ajax({
                 type: "get",
-                url: '/index?startDate='+startDate+'&endDate='+endDate+"t="+new Date().getTime(),
+                url: 'index?startDate='+startDate+'&endDate='+endDate+"t="+new Date().getTime(),
                 success: function(result) {
                 	let checkData = result['data'];
 					let checkDate = checkData['checkDates'];
@@ -194,7 +194,7 @@ var CommonJs = function () {
 				dataType:'json',
 				contentType: "application/json;",
 				data:JSON.stringify(checkDataResult),
-                url: '/add',
+                url: 'add',
                 success: function(postData,status) {
                 	var result = postData['data'];
 					if(result){

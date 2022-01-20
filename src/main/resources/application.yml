@@ -19,7 +19,13 @@ spring:
       static-locations: classpath:/webapp/
 
   thymeleaf:
-    cache: false
+    cache: true
+    mode: HTML
+    encoding: utf-8
+    enabled: true
+    prefix: /
+    suffix: .html
+
   mail:
     host: smtp.qq.com
     username: 568331921@qq.com
