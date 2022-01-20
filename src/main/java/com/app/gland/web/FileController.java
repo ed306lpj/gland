@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.app.gland.common.CommentSortEnum;
 import com.app.gland.entity.GlandFileEntity;
 import com.app.gland.inteface.GlandFileService;
 import com.app.gland.unit.BaseController;
@@ -22,8 +23,7 @@ import com.app.gland.unit.BaseController;
 public class FileController extends BaseController {
 	
 	
-	private static  String[] fileTypeArr =new String[] {"血检","超声"};
-	
+	private static  String[] fileTypeArr =new String[] {"血检","X光","超声","CT","手术"};
 	@Autowired
 	private GlandFileService glandFileService;
 	
@@ -33,10 +33,12 @@ public class FileController extends BaseController {
 	@ResponseBody
     @RequestMapping(value="multifileUpload",method=RequestMethod.POST) 
     public  String multifileUpload(HttpServletRequest request){
-    	String fileDate = get(request,"fileDate");
-    	
-        List<MultipartFile> files = ((MultipartHttpServletRequest)request).getFiles("fileNameGlass");
-        List<MultipartFile> files2 = ((MultipartHttpServletRequest)request).getFiles("fileNameSupersound");
+
+		Integer imageType = getInteger(request,"imageType");
+		String checkDateImage = get(request,"checkDateImage");
+		
+		
+        List<MultipartFile> files = ((MultipartHttpServletRequest)request).getFiles("file");
         if(files.isEmpty()){
             return "false";
         }
@@ -45,7 +47,10 @@ public class FileController extends BaseController {
         Integer count=0;
         for(MultipartFile file:files){
         	String suffix = file.getOriginalFilename().split("\\.")[1];
-            String fileName = fileDate+"_"+fileTypeArr[0]+"_"+count+"."+suffix;
+        	
+        	;
+        	
+            String fileName = CommentSortEnum.getTargetName(imageType).getDesc()+"_"+imageType+"_"+checkDateImage+"_"+fileTypeArr[imageType]+"."+suffix;
             if(file.isEmpty()){
                 continue;
             }else{        
@@ -58,9 +63,9 @@ public class FileController extends BaseController {
                     file.transferTo(dest);
                     count++;
                     GlandFileEntity dto = new GlandFileEntity();
-                    dto.setCheckDate(fileDate);
+                    dto.setCheckDate(checkDateImage);
                     dto.setPath(allpath);
-                    dto.setFileType(0+"");
+                    dto.setFileType(imageType+"");
                     dto.setName(fileName);
                     list.add(dto);
                 }catch (Exception e) {

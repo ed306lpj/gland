@@ -11,14 +11,14 @@ var CommonJs = function () {
 
 	let colorArr=['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9','#f15c80', '#e4d354', '#8085e8', '#8d4653', '#91e8e1']
 
-
+	let imageListDataInit = null;
 
 	let contextPath = window.location.host;
 	return {
 		initData :function(startDate,endDate){
 			jQuery.ajax({
                 type: "get",
-                url: '/index?startDate='+startDate+'&endDate='+endDate+"t="+new Date().getTime(),
+                url: 'index?startDate='+startDate+'&endDate='+endDate+"t="+new Date().getTime(),
                 success: function(result) {
                 	let checkData = result['data'];
 					let checkDate = checkData['checkDates'];
@@ -31,6 +31,9 @@ var CommonJs = function () {
 					let checkOpt6 = checkData['checkOpt6'];
 					let checkOpt7 = checkData['checkOpt7'];
 					let checkOpt8 = checkData['checkOpt8'];
+					
+					imageListDataInit = checkData['imageList'];
+					
 					CommonJs.allData(checkDate,checkOpt1,checkOpt2,checkOpt3,checkOpt4,checkOpt5,checkOpt6,checkOpt7,dosages);
 
 					CommonJs.allDataMore(checkDate,dosages,0);
@@ -49,6 +52,8 @@ var CommonJs = function () {
 					CommonJs.initAvgInfo(checkOpt6,6);
 					CommonJs.initAvgInfo(checkOpt7,7);
 					CommonJs.checkList(checkOpt8,checkDate);
+					
+					CommonJs.imageList(imageListDataInit,null);
 					
                 }
             });
@@ -82,8 +87,30 @@ var CommonJs = function () {
 			}
 			jQuery("#userTable").html(htmlStr);
 		},
-		
-		
+		imageList :function(arr,imageType){
+
+			let htmlStr="";
+			for (let i = 0; i < arr.length; i++){
+				var dto = arr[i];
+				let flag = true;
+				if(imageType !=null&&imageType !=''){
+					let imType = dto['fileType'];
+					if(imType!=imageType){
+						flag=false;
+					}
+				}
+				if(flag){
+					htmlStr+='<tr><td scope="col">'+dto['id']+'</td><td scope="col">'+dto['checkDate']+'</td><td scope="col">'+dto['name']+'</td><td scope="col">'+dto['fileType']+'</td><td scope="col">查看</td></tr>';	
+				}
+			}
+			
+			
+			jQuery("#imageTable").html(htmlStr);
+		},
+		imageListChange :function(imageType){
+			debugger;
+			CommonJs.imageList(imageListDataInit,imageType.value)
+		},
 		
 		allData :function(checkDate,checkOpt1,checkOpt2,checkOpt3,checkOpt4,checkOpt5,checkOpt6,checkOpt7,dosages){
 			$('#container').highcharts({
@@ -194,7 +221,7 @@ var CommonJs = function () {
 				dataType:'json',
 				contentType: "application/json;",
 				data:JSON.stringify(checkDataResult),
-                url: '/add',
+                url: 'add',
                 success: function(postData,status) {
                 	var result = postData['data'];
 					if(result){
@@ -292,6 +319,65 @@ var CommonJs = function () {
 			}
 			
 
+		},
+		checkImageDataError : function(domId){
+			let imageType = jQuery("#imageType").val();
+			let checkDateImage = jQuery("#checkDateImage").val();
+			let fileInput = jQuery("#fileInput").val();
+			
+
+			let flag = true;
+			if(imageType==""){
+				jQuery("#alert3-msg").html("请输入");
+				jQuery("#imageType").focus();
+				syalert.syopen('alert3');
+				flag = false;
+			}
+			if(flag&&checkDateImage==""){
+				jQuery("#alert3-msg").html("请输入");
+				jQuery("#checkDateImage").focus();
+				syalert.syopen('alert3');
+				flag = false;
+			}
+			if(flag&&fileInput==""){
+				jQuery("#alert3-msg").html("请输入");
+				jQuery("#fileInput").focus();
+				syalert.syopen('alert3');
+				flag = false;
+			}
+			
+			if(flag){
+				//			syalert.syhide(id);	
+				let data={
+					"imageType":imageType,
+					"checkDateImage":checkDateImage,
+					"fileInput":fileInput
+				}
+			 	CommonJs.saveImageData(data,domId);
+			}
+			
+
+		},
+		saveImageData :function(checkDataResult,domId){
+			jQuery.ajax({
+                type: 'post',
+				dataType:'json',
+				contentType: "application/json;",
+				data:JSON.stringify(checkDataResult),
+                url: 'add',
+                success: function(postData,status) {
+                	var result = postData['data'];
+					if(result){
+						jQuery("#alert3-msg").html("保存成功");
+						syalert.syhide(domId);	
+						syalert.syopen('alert3');
+					}else{
+						jQuery("#alert3-msg").html("保存失败");
+						syalert.syopen('alert3');
+					}
+                }
+	        });
+			
 		}
 		
 	};

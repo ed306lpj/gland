@@ -11,7 +11,7 @@
             <if test="fileType !=null and fileType !=''">
                 AND file_type =#{fileType}
             </if>
-            ORDER BY check_date ASC
+            ORDER BY check_date desc
         </where>
     </select>
 </mapper>

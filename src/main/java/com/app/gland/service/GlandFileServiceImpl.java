@@ -29,8 +29,7 @@ public class GlandFileServiceImpl extends ServiceImpl<GlandFileMapper, GlandFile
 
 	@Override
 	public List<GlandFileEntity> queryCheckDataList(String start, String end,String type) {
-		glandFileMapper.queryListByCheckDate(start, end, type);
-		return null;
+		return  glandFileMapper.queryListByCheckDate(start, end, type);
 	}
 
 	

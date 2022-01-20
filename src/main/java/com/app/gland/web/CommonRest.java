@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.gland.entity.GlandCheckEntity;
+import com.app.gland.entity.GlandFileEntity;
 import com.app.gland.inteface.GlandCheckService;
+import com.app.gland.inteface.GlandFileService;
 import com.app.gland.unit.GlobalResponse;
 
 import lombok.extern.slf4j.Slf4j;
@@ -40,6 +42,9 @@ public class CommonRest {
     @Value("${spring.mail.sendTo}")
     private String to;
 
+    @Autowired
+	private GlandFileService glandFileService;
+    
 	
     @GetMapping("/index")
     public GlobalResponse getData(@RequestParam(name = "startDate") String startDate, @RequestParam(name = "endDate") String endDate) {
@@ -65,6 +70,10 @@ public class CommonRest {
         map.put("checkOpt6", checkOpt6);
         map.put("checkOpt7", checkOpt7);
         map.put("checkOpt8", checkOpt8);
+        List<GlandFileEntity> list2 =  glandFileService.list();
+        map.put("imageList", list2);
+        
+        
         return GlobalResponse.success(map);
     }
 
