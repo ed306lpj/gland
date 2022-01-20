@@ -48,7 +48,6 @@ var CommonJs = function () {
 					CommonJs.initAvgInfo(checkOpt5,5);
 					CommonJs.initAvgInfo(checkOpt6,6);
 					CommonJs.initAvgInfo(checkOpt7,7);
-					debugger;
 					CommonJs.checkList(checkOpt8,checkDate);
 					
                 }

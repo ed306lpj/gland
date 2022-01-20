@@ -25,7 +25,9 @@
 <script src="js/syalert.min.js"></script>
 <script type="text/javascript" src="js/moment.js"></script>
 <script type="text/javascript" src="js/xndatepicker.js"></script>
-<!-- <script src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>  -->
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script type="text/javascript" src="js/uploadFile.js"></script>
+<script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
 
 <script type="text/javascript">
 CommonJs.initData("2017-11-01","2036-04-04");
@@ -60,6 +62,8 @@ CommonJs.initData("2017-11-01","2036-04-04");
 </head>
 <body>
 
+<div id="dialogDiv" name="dialogDiv">3333</div>
+
 <div class='loader'>
   <div class='spinner-grow text-primary' role='status'> <span class='sr-only'>加载中...</span></div>
 </div>
@@ -71,8 +75,8 @@ CommonJs.initData("2017-11-01","2036-04-04");
           <li class="nav-item"><a class="nav-link" id="sidebar-toggle" href="#"><i data-feather="arrow-left"></i></a></li>
           <li class="nav-item"><a class="nav-link" href="#">主页</a></li>
           <li class="nav-item"><a class="nav-link" href="#">帮助</a></li>
-          <li class="nav-item"><a class="nav-link"  onClick="syalert.syopen('alert4')" style="cursor:pointer;" >添加检查记录</a></li>
-          <li class="nav-item"><a class="nav-link"  style="cursor:pointer;" ><div id='daterange' class="dateinputer"></div></a></li>
+          <li class="nav-item"><a class="nav-link"  onClick="syalert.syopen('addCheckBland')" style="cursor:pointer;" >添加检查记录</a></li>
+          <li class="nav-item"><a class="nav-link"  onClick="UploadFile.openDilog()" style="cursor:pointer;" >上传影像资料</a></li>
            
           
         </ul>
@@ -507,7 +511,7 @@ CommonJs.initData("2017-11-01","2036-04-04");
 
 
         <!-- 弹出框内容 -->
-        <div class="sy-alert sy-alert-model animated" sy-enter="zoomIn" sy-leave="zoomOut" sy-type="confirm" sy-mask="true" id="alert4">
+        <div class="sy-alert sy-alert-model animated" sy-enter="zoomIn" sy-leave="zoomOut" sy-type="confirm" sy-mask="true" id="addCheckBland">
 		<div class="sy-title">记录检查结果</div>
 		<div class="sy-content">
 			<div class="form">
@@ -541,8 +545,8 @@ CommonJs.initData("2017-11-01","2036-04-04");
 			</div>
 		</div>
 		<div class="sy-btn">
-			<button onClick="syalert.syhide('alert4')">取消</button>
-			<button onClick="ok('alert4')">保存</button>
+			<button onClick="syalert.syhide('addCheckBland')">取消</button>
+			<button onClick="ok('addCheckBland')">保存</button>
 		</div>
         </div>
 
