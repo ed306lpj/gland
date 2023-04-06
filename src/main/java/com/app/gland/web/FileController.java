@@ -118,7 +118,7 @@ public class FileController extends BaseController {
         try {
         	
         	ips = new FileInputStream(file);    
-            response.setContentType("multipart/form-data");    
+            response.setContentType("image/jpeg");    
             out = response.getOutputStream();    
             //读取文件流    
             int len = 0;    
