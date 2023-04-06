@@ -13,6 +13,10 @@ var CommonJs = function () {
 
 	let imageListDataInit = null;
 
+
+	let imgTypeInfo = ["血检","X光","超声","CT","手术"];
+
+
 	let contextPath = window.location.host;
 	return {
 		initData :function(startDate,endDate){
@@ -99,8 +103,11 @@ var CommonJs = function () {
 						flag=false;
 					}
 				}
+				
+				
+				
 				if(flag){
-					htmlStr+='<tr><td scope="col">'+dto['id']+'</td><td scope="col">'+dto['checkDate']+'</td><td scope="col">'+dto['name']+'</td><td scope="col">'+dto['fileType']+'</td><td scope="col">查看</td></tr>';	
+					htmlStr+='<tr><td scope="col">'+dto['id']+'</td><td scope="col">'+dto['checkDate']+'</td><td scope="col">'+dto['name']+'</td><td scope="col">'+imgTypeInfo[dto['fileType']]+'</td><td scope="col"><a class="navbar-brand" href="image.html?id='+dto['id']+'">查看</a></td></tr>';	
 				}
 			}
 			
@@ -378,6 +385,9 @@ var CommonJs = function () {
                 }
 	        });
 			
+		},
+		imageView : function(id){
+			jQuery("#imageId").html('<img alt="" src="/readImg?id=1641429221172867073">');
 		}
 		
 	};

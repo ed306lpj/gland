@@ -70,7 +70,7 @@ public class CommonRest {
         map.put("checkOpt6", checkOpt6);
         map.put("checkOpt7", checkOpt7);
         map.put("checkOpt8", checkOpt8);
-        List<GlandFileEntity> list2 =  glandFileService.list();
+        List<GlandFileEntity> list2 =  glandFileService.queryCheckDataList(null, null, null);
         map.put("imageList", list2);
         
         
